@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    
+<div class="container" align="center">
+    <h3 class="feature-txt">Temperature Converter</h3>
+    <form>
+        <div class="content">
+            <input type="text" id="temp" placeholder="Temp" required>
+        </div>
+        <div class="content">
+            From :
+            <select id="unit">
+                <option value="1">Celsius</option>
+                <option value="2">Fahrenheit</option>
+                <option value="3">Kelvin</option>
+
+            </select>
+        </div>
+        <div class="content">
+            To  &nbsp;&nbsp; &nbsp; :
+            <select id="cunit" >
+                <option value="1">Celsius</option>
+                <option value="2" selected>Fahrenheit</option>
+                <option value="3">Kelvin</option>
+
+            </select>
+        </div>
+        <div class="result">
+            <textarea type="number" id="result">result will be shown here...</textarea>
+        </div>
+        <input type="button" class="btn" onclick="convert()" value="Convert"></button>
+
+    </form>
+</div>
+
+</body>
+<script>
+    function convert(){
+
+        
+
+        var temp = document.getElementById("temp").value;
+        var unit = document.getElementById("unit").value;
+        var cunit = document.getElementById("cunit").value;
+        var result = document.getElementById("result");
+        if(temp==""||temp==null || isNaN(temp)){
+            alert("Please enter a valid number ");
+        }
+        else{
+        var temp = parseFloat(temp);
+        result.style.visibility="visible";
+        if(unit==cunit){
+            result.innerHTML=temp
+        }
+        
+        else if((unit==1) && (cunit==2)){
+            var a= (temp * 9/5) + 32;
+            result.innerHTML=a+"&#x2109"; 
+        }
+        else if((unit==1) && (cunit==3)){
+            var a = (temp)+273.15;
+            result.innerHTML=a+"K";
+        }
+        else if((unit==2) && (cunit==1)){
+            var b = (temp-32)*5/9;
+            result.innerHTML=b+"&#8451";
+        }
+        else if((unit==2) && (cunit==3)){
+            var b = (temp-32)*5/9 + 273.15;
+            result.innerHTML=b+"K";
+        }
+        else if((unit==3) && (cunit==1)){
+            var a = (temp)-273.15;
+            result.innerHTML=(a+"&#8451");
+        }
+        else if((unit==3) && (cunit==2)){
+            var b = (temp-273.15) * 9/5+32;
+            result.innerHTML=(b+"&#x2109");
+
+        }
+    }
+    }
+</script>
+</html>
